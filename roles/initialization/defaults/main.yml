@@ -1,0 +1,27 @@
+---
+
+resolv_nameservers:
+  - 8.8.8.8
+  
+resolv_domain: ''
+resolv_search: ''
+resolv_sortlist: ''
+resolv_options: ''
+
+_yum: [
+  { state: "present", name: "telnet" },
+  { state: "present", name: "rsync" },
+  { state: "present", name: "vim" },
+  { state: "present", name: "wget" },
+  { state: "present", name: "yum-utils" },
+  { state: "present", name: "zip" },
+  { state: "present", name: "unzip" },
+  { state: "present", name: "chrony" },
+  { state: "present", name: "net-tools" },
+  { state: "present", name: "tcpdump" },
+  { state: "present", name: "lsof" },
+  { state: "present", name: "strace" },
+  { state: "present", name: "emacs-nox" },
+  { state: "present", name: "bash-completion" },
+  { state: "present", name: "tree" },
+]

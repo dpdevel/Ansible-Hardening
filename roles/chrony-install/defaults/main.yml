@@ -1,0 +1,9 @@
+---
+chrony_ntp_servers:
+  - 10.11.21.12
+  - 10.11.21.13
+
+chrony_pre_packages: []
+chrony_packages: []
+chrony_package_state: present
+chrony_services: []

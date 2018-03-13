@@ -1,0 +1,11 @@
+---
+
+- hosts: INIT
+  become: yes
+  gather_facts: yes
+  roles:
+    - { role: ssh-key, tags: ssh-key }
+    - { role: initialization, tags: initialization }
+    - { role: selinux-disable, tags: selinux }
+    - { role: chrony-install, tags: chrony }
+    - { role: epel-repository, tags: ['initialization', 'epel'] }

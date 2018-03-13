@@ -1,0 +1,4 @@
+---
+- name: Disale Selinux
+  selinux:
+    state: disabled

@@ -1,0 +1,42 @@
+---
+
+- name: Configure resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: 0644
+
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+    exclude: logstash,amavisd-new
+  tags: yum
+
+- name: yum install base packages
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ _yum }}"
+  tags: yum
+
+- name: set hostname
+  hostname: name="{{ inventory_hostname }}"
+  tags: hostname
+  
+- name: turn off reverse DNS lookups in sshd
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '#UseDNS no'
+    line: 'UseDNS no'
+
+- name: turn off GSSAPIAuthentication in sshd
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: 'GSSAPIAuthentication yes'
+    line: 'GSSAPIAuthentication no'
+
+- name: reload sshd configuration
+  service:
+    name: sshd
+    state: reloaded
